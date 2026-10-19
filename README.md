@@ -1,22 +1,33 @@
-# Water-Quality-and-Risk-Assessment
+ # Water Quality Trends and Monitoring Gaps in the River Thames, 2021–2025
+
+# Project Overview
+
+This portfolio project examines water-quality conditions across selected stretches of the River Thames using monitoring data from the Environment Agency.
+
+The analysis investigates how key water-quality indicators changed over time and differed between river stretches. It focuses on ammoniacal nitrogen, reactive orthophosphate, dissolved oxygen saturation and pH, with water temperature used as a supporting example of incomplete seasonal monitoring.
+
+The project demonstrates an end-to-end environmental data-analysis workflow using Excel, SQL and Looker Studio. This includes data preparation, exploratory analysis, temporal and geographical comparisons, anomaly investigation and the communication of reproducible findings.
+
+The analysis is intended as a descriptive screening exercise and does not represent an official regulatory water-quality classification.
 
 
-## Project Overview
+# Project Aim
+To analyse changes in selected water-quality indicators across four River Thames stretches between 2021 and 2025, identify unusual results and assess how monitoring limitations affect interpretation.
 
-This portfolio project examines water-quality conditions across selected sections of the River Thames using monitoring data from the Environment Agency.
+# Project Objectives
+Prepare the monitoring records for analysis by cleaning measurement values and retaining detection-limit information.
+Measure overall annual trends in selected water-quality indicators.
+Compare annual results across the four river stretches.
+Investigate unusual measurements that may influence annual averages.
+Evaluate how missing periods, unequal record counts and below-detection results affect interpretation.
+Communicate the results through Excel, SQL and Looker Studio.
 
-The analysis investigates how key water-quality indicators vary over time and between upstream and downstream river sections. The project includes data collection, data cleaning, exploratory analysis, geographical comparison and the development of a transparent water-quality risk-assessment framework.
-
-The purpose of the project is to demonstrate an end-to-end environmental data-analysis workflow, from preparing raw monitoring records to communicating meaningful and reproducible insights.
-
-
-## Project Questions
-The project is designed to answer the following questions:
-How has water quality changed across the study period?
-Do water-quality conditions differ between upstream and downstream river sections?
-Which water-quality parameters show the greatest spatial or temporal variation?
-Which locations or periods may require closer monitoring?
-Can selected indicators be combined into a transparent water-quality risk score?
+# Project Questions
+How did the selected water-quality indicators change between 2021 and 2025?
+How did annual trends differ between the four river stretches?
+Which parameters showed the greatest temporal or geographical variation?
+Which parameter, year and river-stretch combinations contained unusual results requiring closer investigation?
+How did detection limits, missing monitoring periods and unequal record counts affect the reliability of comparisons?
 
 ## Study Area
 
@@ -61,8 +72,8 @@ Present the findings through charts, a dashboard and a concise project report.
 ```text
 pH
 Temperature of Water
-Dissolved oxygen, percentage saturation
-Orthophosphate, reactive as phosphorus
+Oxygen, Dissolved, % Saturation
+Orthophosphate, reactive as P
 Ammoniacal nitrogen as N
 ```
 
@@ -85,6 +96,13 @@ Detailed findings are documented in docs/findings.md.
 Ammoniacal nitrogen: Annual averages declined across the monitored sections and generally stabilised at lower concentrations during the later study years.
 
 Detailed findings are documented in [Exploratory Analysis Findings](docs/findings.md).
+
+Key Findings
+
+Annual ammoniacal nitrogen was highest in 2021, influenced by a maximum result of 6.90 mg/L. 
+Reactive orthophosphate declined through 2024 before increasing in 2025.
+Dissolved oxygen saturation remained comparatively stable.
+
 
 ## Repository Structure
 ```text
