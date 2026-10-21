@@ -56,17 +56,6 @@ The source data include observations collected at monitoring sites along selecte
 
 The original source files are preserved unchanged in the local `data/raw/` directory. The public repository does not include all raw files because of their volume and to avoid unnecessary duplication of the source data.
 
-## Project Objectives
-
-Combine water-quality records from multiple years and river sections.
-Preserve the original raw data separately from cleaned and processed data.
-Standardise column names, dates, numerical values and location categories.
-Identify missing values, duplicates, invalid values and possible outliers.
-Analyse changes in selected water-quality indicators over time.
-Compare average conditions across the four river sections.
-Identify parameters that may contribute to water-quality risk.
-Develop a documented and reproducible risk-assessment method.
-Present the findings through charts, a dashboard and a concise project report.
 
 ## Parameters Analysed
 ```text
@@ -97,12 +86,14 @@ Ammoniacal nitrogen: Annual averages declined across the monitored sections and 
 
 Detailed findings are documented in [Exploratory Analysis Findings](docs/findings.md).
 
-Key Findings
+# Key Findings
 
 Annual ammoniacal nitrogen was highest in 2021, influenced by a maximum result of 6.90 mg/L. 
 Reactive orthophosphate declined through 2024 before increasing in 2025.
 Dissolved oxygen saturation remained comparatively stable.
 
+Cookham–Egham recorded a median ammoniacal nitrogen concentration of 0.034 mg/L in 2021, while the maximum reached 6.90 mg/L. Of the 80 recorded measurements, 62.5% were below detection limits. 
+A sensitivity analysis reduced the mean from 0.180 mg/L to 0.095 mg/L when the 6.90 mg/L result was excluded. This difference of 0.085 mg/L shows that the maximum measurement increased the reported mean by approximately 47%. The result was retained in the dataset because the analysis measures its influence rather than assuming it was erroneous.
 
 ## Repository Structure
 ```text
@@ -164,28 +155,36 @@ Detection-limit records were therefore not treated automatically as missing valu
 
 Before interpreting water-quality trends, the combined dataset was reviewed for:
 
-Missing values
-Duplicate observations
-Invalid or inconsistent dates
-Non-numeric measurement values
-Below-detection and above-detection measurements
-Inconsistent units for the same parameter
-Unexpected or potentially extreme values
-Uneven coverage between river sections and years
-Differences in parameter availability and sampling frequency
+* Missing values and duplicate observations
+* Invalid or inconsistent dates
+* Non-numeric measurement values
+* Results below detection limits or above analytical ranges
+* Inconsistent units within parameters
+* Unexpected or potentially extreme values
+* Uneven monitoring coverage across river stretches and years
+* Differences in parameter availability and sampling frequency
 
-Potentially extreme measurements were not assumed to be errors automatically. Unusual records require investigation because they may represent either data-quality issues or genuine environmental events.
+Results reported below detection limits were retained using half the stated detection limit. Results above analytical ranges were retained as flagged boundary values.
+
+Potentially extreme measurements were not automatically treated as errors. Unusual records were investigated because they may represent either data-quality issues or genuine environmental events.
 
 ## Limitations
 
-Sampling frequency differs between river sections and years.
-Some months and location-year combinations have no available observations.
-Parameter availability is not consistent across the full dataset.
-Annual averages may conceal seasonal variation and individual extreme measurements.
-Detection-limit substitutions can influence calculated averages.
-Geographical differences may reflect monitoring coverage as well as environmental variation.
-The analysis identifies associations and patterns but does not establish their causes.
-The findings do not represent a formal regulatory water-quality classification.
+* Sampling frequency differs between river sections and years.
+* Some months and location-year combinations have no available observations.
+* Parameter availability is not consistent across the full dataset.
+* Annual averages may conceal seasonal variation and individual extreme measurements.
+* Detection-limit substitutions can influence calculated averages.
+* Geographical differences may reflect monitoring coverage as well as environmental variation.
+* The analysis identifies associations and patterns but does not establish their causes.
+* The findings do not represent a formal regulatory water-quality classification.
+
+# Monitoring Coverage and Detection Limits
+Monitoring coverage varied by parameter, river stretch and year. For example, Cookham–Egham ammoniacal nitrogen records contained no observations for August, September or October 2022. The same parameter had observations in only seven months during 2024.
+
+These gaps mean that some annual summaries may not represent complete seasonal conditions. Months without observations were treated as coverage gaps, not as evidence that scheduled sampling was missed.
+
+Results reported below analytical detection limits were retained using half the stated detection limit. Results reported above the analytical range were also retained as flagged boundary values rather than treated as exact measurements.
 
 ## Recommendations
 
@@ -207,3 +206,22 @@ Source: Environment Agency, Water Quality Explorer, accessed 31 July 2026.
 The Water Quality Explorer is a continuously maintained source, so records may be updated or corrected after the project data are downloaded. Sampling frequency and parameter availability may also differ between monitoring locations and years.
 
 For reproducibility, this project records the data-access date and preserves the downloaded raw files unchanged. The analysis reflects the version of the source data available when the project files were collected.
+
+/*
+Conclusion:
+The 6.90 mg/L result substantially influenced the Cookham-Egham
+2021 mean. Excluding it in a sensitivity test reduced the mean
+from 0.180 mg/L to 0.095 mg/L, a difference of 0.085 mg/L.
+
+The observation remains in the dataset because there is insufficient
+evidence to classify it as an error.
+
+Monitoring coverage varied across parameter, year and river stretch.
+Some annual summaries were based on partial monthly coverage.
+
+Missing months indicate no matching observations in the dataset.
+They do not establish that scheduled sampling was missed.
+
+Below- and above-detection-limit flags were retained to support
+transparent interpretation of boundary values.
+*/
