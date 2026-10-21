@@ -13,7 +13,7 @@ Results are descriptive trends and are not official regulatory
 water-quality classifications.
 */
 
-# overall_annual_trends.sql
+a. overall annual trends
 SELECT
     sample_year,
     parameter_name,
@@ -39,7 +39,7 @@ ORDER BY
     sample_year;
 
 
-# annual_trends_by_river_stretch.sql
+b. annual trends by river stretch
 
     SELECT
     sample_year,
@@ -69,9 +69,8 @@ ORDER BY
     sample_year;
 
 # Analysis 2: ammoniacal_nitrogen_anomaly.sql
-/*
+
 a. Identify the measurements driving the anomaly
-*/
 
 SELECT
     river_stretch,
@@ -89,8 +88,7 @@ WHERE parameter_name = 'Ammoniacal Nitrogen as N'
 ORDER BY measurement_value_cleaned DESC
 LIMIT 10;
 
-
-b. /* Compare the Cookham-Egham 2021 mean before and after excluding the 6.90 mg/L maximum result */
+b. Compare the Cookham-Egham 2021 mean before and after excluding the 6.90 mg/L maximum result
 
 SELECT
     river_stretch,
@@ -107,15 +105,12 @@ SELECT
     ) AS mean_without_6_9,
     ROUND(
         AVG(measurement_value_cleaned)
-        -
-        AVG(
+        - AVG(
             CASE
                 WHEN measurement_value_cleaned < 6.9
                 THEN measurement_value_cleaned
-            END
-        ),
-        3
-    ) AS difference_caused_by_maximum
+            END), 3
+                    ) AS difference_caused_by_maximum
 FROM `water-quality-510014.water_quality.Risk_assessment`
 WHERE parameter_name = 'Ammoniacal Nitrogen as N'
   AND river_stretch = 'Cookham-Egham'
@@ -125,7 +120,7 @@ GROUP BY river_stretch;
 
 # Analysis 3 Data Quality and Detection Limit
 
-a. # Detection limit summary
+a.  Detection limit summary
 
 /* Measure the proportion of results reported below detection limits
 for each selected parameter, year and river stretch.
@@ -133,45 +128,40 @@ for each selected parameter, year and river stretch.
 Below-detection treatment: Values reported as <x were replaced with x/2 in
 measurement_value_cleaned.
 */ 
+
 SELECT
     sample_year,
     river_stretch,
     parameter_name,
     unit,
     COUNT(measurement_value_cleaned) AS measurement_count,
-
     COUNTIF(below_detection_limit = 1) AS below_detection_count,
-
     ROUND(
         100 * SAFE_DIVIDE(
             COUNTIF(below_detection_limit = 1),
             COUNT(measurement_value_cleaned)
         ),
         2
-    ) AS below_detection_percentage,
+    ) AS below_detection_percentage
 FROM `water-quality-510014.water_quality.Risk_assessment`
-
 WHERE parameter_name IN (
     'Ammoniacal Nitrogen as N',
     'Orthophosphate, reactive as P',
     'Oxygen, Dissolved, % Saturation',
-    'pH'
-)
+    'pH' )
   AND measurement_value_cleaned IS NOT NULL
-
 GROUP BY
     sample_year,
     river_stretch,
     parameter_name,
     unit
-
 ORDER BY
     below_detection_percentage DESC,
     parameter_name,
     sample_year,
     river_stretch;
 
-    #b. Monthly monitoring coverage
+b. Monthly monitoring coverage
 
     /* Count the number of distinct monitored months for every parameter, year and river stretch.
 This identifies annual summaries based on incomplete seasonal coverage.
