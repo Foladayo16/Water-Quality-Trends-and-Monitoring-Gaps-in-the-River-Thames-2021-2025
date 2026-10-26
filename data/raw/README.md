@@ -6,4 +6,4 @@ The raw files are preserved unchanged and are not included in the public reposit
 
 The project README provides the data source, study coverage and instructions for obtaining the original records.
 
-Processed or summarised data made available for reproducibility can be found in [data/processed/](README.mddata/preocessed).
+Processed or summarised data made available for reproducibility can be found in [data/processed/](.data/preocessed)
