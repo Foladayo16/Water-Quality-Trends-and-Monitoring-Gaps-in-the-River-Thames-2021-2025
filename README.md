@@ -95,6 +95,18 @@ Dissolved oxygen saturation remained comparatively stable.
 Cookham–Egham recorded a median ammoniacal nitrogen concentration of 0.034 mg/L in 2021, while the maximum reached 6.90 mg/L. Of the 80 recorded measurements, 62.5% were below detection limits. 
 A sensitivity analysis reduced the mean from 0.180 mg/L to 0.095 mg/L when the 6.90 mg/L result was excluded. This difference of 0.085 mg/L shows that the maximum measurement increased the reported mean by approximately 47%. The result was retained in the dataset because the analysis measures its influence rather than assuming it was erroneous.
 
+# Dashboard
+The two-page interactive dashboard was developed in Looker Studio to communicate the main findings and allow users to explore annual and geographical patterns.
+
+# Page 1: Executive Summary
+The executive-summary page presents the project objective, key findings, conclusions and monitoring recommendations.
+
+!(Executive summary)(visuals/data-quality-report.xlsx/execucutive_summary.png)
+
+# Page 2: Interactive Analysis
+The interactive-analysis page allows users to filter the results by year, river stretch and parameter. It includes annual trends, river-stretch comparisons, measurement counts and monitoring-coverage information.
+!(Interactive Analysis)(visuals/data-quality-report.xlsx/interactive_analysis.png)
+
 ## Repository Structure
 ```text
 Water-Quality-and-Risk-Assessment/
